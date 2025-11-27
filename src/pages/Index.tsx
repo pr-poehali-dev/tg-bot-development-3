@@ -21,7 +21,7 @@ interface CartItem extends Video {
 const mockVideos: Video[] = [
   {
     id: 1,
-    title: 'Основы видеомонтажа',
+    title: 'Архив №1',
     price: 1299,
     duration: '2:30:00',
     category: 'Обучение',
@@ -29,7 +29,7 @@ const mockVideos: Video[] = [
   },
   {
     id: 2,
-    title: 'Креативная съемка',
+    title: 'Архив №2',
     price: 1999,
     duration: '1:45:00',
     category: 'Мастер-класс',
@@ -37,7 +37,7 @@ const mockVideos: Video[] = [
   },
   {
     id: 3,
-    title: 'Цветокоррекция Pro',
+    title: 'Архив №3',
     price: 2499,
     duration: '3:15:00',
     category: 'Профессионал',
@@ -45,7 +45,7 @@ const mockVideos: Video[] = [
   },
   {
     id: 4,
-    title: 'Монтаж для блогеров',
+    title: 'Архив №4',
     price: 999,
     duration: '1:20:00',
     category: 'Обучение',
@@ -53,7 +53,7 @@ const mockVideos: Video[] = [
   },
   {
     id: 5,
-    title: 'Звуковой дизайн',
+    title: 'Архив №5',
     price: 1499,
     duration: '2:00:00',
     category: 'Мастер-класс',
@@ -61,7 +61,7 @@ const mockVideos: Video[] = [
   },
   {
     id: 6,
-    title: 'Анимация текста',
+    title: 'Архив №6',
     price: 1799,
     duration: '2:45:00',
     category: 'Профессионал',
@@ -75,7 +75,7 @@ const Index = () => {
   const [purchaseHistory] = useState<Video[]>([
     {
       id: 101,
-      title: 'Основы композиции',
+      title: 'Архив №101',
       price: 1199,
       duration: '1:30:00',
       category: 'Обучение',
