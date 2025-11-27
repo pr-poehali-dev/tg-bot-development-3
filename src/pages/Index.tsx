@@ -152,15 +152,29 @@ const Index = () => {
                       <Icon name="Clock" size={16} />
                       <span>{video.duration}</span>
                     </div>
-                    <div className="flex items-center justify-between">
+                    <div className="mb-3">
                       <span className="text-2xl font-bold text-primary">{video.price} ₽</span>
+                    </div>
+                    <div className="flex gap-2">
                       <Button 
                         onClick={() => addToCart(video)}
                         size="sm"
-                        className="gap-2"
+                        variant="outline"
+                        className="flex-1 gap-2"
                       >
-                        <Icon name="Plus" size={16} />
+                        <Icon name="ShoppingCart" size={16} />
                         В корзину
+                      </Button>
+                      <Button 
+                        onClick={() => {
+                          addToCart(video);
+                          setActiveTab('cart');
+                        }}
+                        size="sm"
+                        className="flex-1 gap-2"
+                      >
+                        <Icon name="Zap" size={16} />
+                        Купить
                       </Button>
                     </div>
                   </CardContent>
