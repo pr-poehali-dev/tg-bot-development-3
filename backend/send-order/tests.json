@@ -1,0 +1,32 @@
+{
+  "tests": [
+    {
+      "name": "Test OPTIONS request for CORS",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Test order submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "customerName": "Тестовый покупатель",
+        "customerContact": "@test_user",
+        "items": [
+          {
+            "title": "Архив №1",
+            "quantity": 1,
+            "price": 1299
+          }
+        ],
+        "totalPrice": 1299
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
