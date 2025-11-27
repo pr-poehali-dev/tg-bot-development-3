@@ -145,7 +145,6 @@ const Index = () => {
                       alt={video.title}
                       className="w-full h-full object-cover"
                     />
-                    <Badge className="absolute top-3 right-3">{video.category}</Badge>
                   </div>
                   <CardContent className="p-4">
                     <h3 className="font-semibold text-lg mb-2">{video.title}</h3>
