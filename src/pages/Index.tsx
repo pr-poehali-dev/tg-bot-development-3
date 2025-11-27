@@ -35,7 +35,7 @@ const mockVideos: Video[] = [
     price: 1299,
     duration: '2:30:00',
     category: 'Обучение',
-    thumbnail: 'https://cdn.poehali.dev/projects/74c60f06-1167-4b5f-a848-02c17ffaba7d/files/2ad0f2c3-8133-4a22-bb8e-8c858752769c.jpg'
+    thumbnail: ''
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ const mockVideos: Video[] = [
     price: 1999,
     duration: '1:45:00',
     category: 'Мастер-класс',
-    thumbnail: 'https://cdn.poehali.dev/projects/74c60f06-1167-4b5f-a848-02c17ffaba7d/files/2ad0f2c3-8133-4a22-bb8e-8c858752769c.jpg'
+    thumbnail: ''
   },
   {
     id: 3,
@@ -51,7 +51,7 @@ const mockVideos: Video[] = [
     price: 2499,
     duration: '3:15:00',
     category: 'Профессионал',
-    thumbnail: 'https://cdn.poehali.dev/projects/74c60f06-1167-4b5f-a848-02c17ffaba7d/files/2ad0f2c3-8133-4a22-bb8e-8c858752769c.jpg'
+    thumbnail: ''
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ const mockVideos: Video[] = [
     price: 999,
     duration: '1:20:00',
     category: 'Обучение',
-    thumbnail: 'https://cdn.poehali.dev/projects/74c60f06-1167-4b5f-a848-02c17ffaba7d/files/2ad0f2c3-8133-4a22-bb8e-8c858752769c.jpg'
+    thumbnail: ''
   },
   {
     id: 5,
@@ -67,7 +67,7 @@ const mockVideos: Video[] = [
     price: 1499,
     duration: '2:00:00',
     category: 'Мастер-класс',
-    thumbnail: 'https://cdn.poehali.dev/projects/74c60f06-1167-4b5f-a848-02c17ffaba7d/files/2ad0f2c3-8133-4a22-bb8e-8c858752769c.jpg'
+    thumbnail: ''
   },
   {
     id: 6,
@@ -75,7 +75,7 @@ const mockVideos: Video[] = [
     price: 1799,
     duration: '2:45:00',
     category: 'Профессионал',
-    thumbnail: 'https://cdn.poehali.dev/projects/74c60f06-1167-4b5f-a848-02c17ffaba7d/files/2ad0f2c3-8133-4a22-bb8e-8c858752769c.jpg'
+    thumbnail: ''
   }
 ];
 
@@ -94,7 +94,7 @@ const Index = () => {
       price: 1199,
       duration: '1:30:00',
       category: 'Обучение',
-      thumbnail: 'https://cdn.poehali.dev/projects/74c60f06-1167-4b5f-a848-02c17ffaba7d/files/2ad0f2c3-8133-4a22-bb8e-8c858752769c.jpg'
+      thumbnail: ''
     }
   ]);
 
