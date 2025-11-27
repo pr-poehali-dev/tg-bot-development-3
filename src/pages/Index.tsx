@@ -206,14 +206,7 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {mockVideos.map((video) => (
                 <Card key={video.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div className="relative aspect-video overflow-hidden bg-muted">
-                    <img 
-                      src={video.thumbnail} 
-                      alt={video.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardContent className="p-4">
+                  <CardContent className="p-6">
                     <h3 className="font-semibold text-lg mb-2">{video.title}</h3>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                       <Icon name="Clock" size={16} />
@@ -265,11 +258,6 @@ const Index = () => {
                 {cart.map((item) => (
                   <Card key={item.id}>
                     <CardContent className="p-4 flex items-center gap-4">
-                      <img 
-                        src={item.thumbnail} 
-                        alt={item.title}
-                        className="w-24 h-16 object-cover rounded"
-                      />
                       <div className="flex-1">
                         <h3 className="font-semibold">{item.title}</h3>
                         <p className="text-sm text-muted-foreground">{item.duration}</p>
@@ -330,11 +318,6 @@ const Index = () => {
                     {purchaseHistory.map((video) => (
                       <Card key={video.id}>
                         <CardContent className="p-4 flex items-center gap-4">
-                          <img 
-                            src={video.thumbnail} 
-                            alt={video.title}
-                            className="w-20 h-12 object-cover rounded"
-                          />
                           <div className="flex-1">
                             <h4 className="font-medium">{video.title}</h4>
                             <p className="text-sm text-muted-foreground">{video.duration}</p>
