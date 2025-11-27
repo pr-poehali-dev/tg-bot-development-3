@@ -108,7 +108,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 py-6">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">VideoShop</h1>
+          <h1 className="text-3xl font-bold mb-2">pvz_shop</h1>
           <p className="text-muted-foreground">Лучший контент за всю историю рунета</p>
         </header>
 
