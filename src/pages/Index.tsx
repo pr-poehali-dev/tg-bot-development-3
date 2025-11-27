@@ -4,6 +4,16 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 interface Video {
   id: number;
@@ -72,6 +82,11 @@ const mockVideos: Video[] = [
 const Index = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [activeTab, setActiveTab] = useState('catalog');
+  const [showCheckoutDialog, setShowCheckoutDialog] = useState(false);
+  const [customerName, setCustomerName] = useState('');
+  const [customerContact, setCustomerContact] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
   const [purchaseHistory] = useState<Video[]>([
     {
       id: 101,
@@ -102,6 +117,58 @@ const Index = () => {
 
   const getTotalPrice = () => {
     return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  };
+
+  const handleCheckout = async () => {
+    if (!customerName.trim() || !customerContact.trim()) {
+      toast({
+        title: 'Ошибка',
+        description: 'Заполните все поля',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/fbd94770-4d64-4dea-9a3d-50176d735b3a', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          customerName,
+          customerContact,
+          items: cart,
+          totalPrice: getTotalPrice()
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: 'Заказ отправлен!',
+          description: 'Скоро с вами свяжутся для согласования оплаты'
+        });
+        setCart([]);
+        setCustomerName('');
+        setCustomerContact('');
+        setShowCheckoutDialog(false);
+        setActiveTab('catalog');
+      } else {
+        throw new Error(data.error || 'Ошибка отправки');
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось отправить заказ. Попробуйте позже',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -228,7 +295,11 @@ const Index = () => {
                       <span className="text-lg font-semibold">Итого:</span>
                       <span className="text-3xl font-bold text-primary">{getTotalPrice()} ₽</span>
                     </div>
-                    <Button className="w-full" size="lg">
+                    <Button 
+                      className="w-full" 
+                      size="lg"
+                      onClick={() => setShowCheckoutDialog(true)}
+                    >
                       Оформить покупку
                     </Button>
                   </CardContent>
@@ -365,6 +436,68 @@ const Index = () => {
             </div>
           </TabsContent>
         </Tabs>
+
+        <Dialog open={showCheckoutDialog} onOpenChange={setShowCheckoutDialog}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Оформление заказа</DialogTitle>
+              <DialogDescription>
+                Укажите ваши контактные данные для связи
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Ваше имя</Label>
+                <Input
+                  id="name"
+                  placeholder="Иван Иванов"
+                  value={customerName}
+                  onChange={(e) => setCustomerName(e.target.value)}
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="contact">Telegram или телефон</Label>
+                <Input
+                  id="contact"
+                  placeholder="@username или +7 (999) 123-45-67"
+                  value={customerContact}
+                  onChange={(e) => setCustomerContact(e.target.value)}
+                />
+              </div>
+
+              <div className="pt-4 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Товаров:</span>
+                  <span>{cart.length} шт.</span>
+                </div>
+                <div className="flex justify-between font-semibold text-lg">
+                  <span>Итого к оплате:</span>
+                  <span className="text-primary">{getTotalPrice()} ₽</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => setShowCheckoutDialog(false)}
+                disabled={isSubmitting}
+              >
+                Отмена
+              </Button>
+              <Button
+                className="flex-1"
+                onClick={handleCheckout}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Отправка...' : 'Отправить заказ'}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
